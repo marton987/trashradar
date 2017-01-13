@@ -18,3 +18,18 @@ Web/mobile application that help public servants and community to pinpoint trash
 
 ## Second phase
 - Build mobile application as API client for trashradar-api
+
+
+## Template credits
+
+- https://github.com/akveo/ng2-admin
+
+## Run the project
+
+To run a local copy in development mode, execute:
+
+```
+npm start
+```
+
+Go to [http://localhost:3000](http://localhost:3000) in your browser.
