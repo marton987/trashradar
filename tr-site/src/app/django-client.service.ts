@@ -12,28 +12,28 @@ export class DjangoClientService {
   constructor(private https: Http) { }
 
   public get(url: string, options: RequestOptions): Observable<any> {
-    let _options = this._setAuthToken(options);
+    const _options = this._setAuthToken(options);
     return this.https.get(url, _options)
                      .map((response) => response.json())
                      .catch(this.handleError);
   }
 
   public post(url: string, data: Object, options: RequestOptions): Observable<any> {
-    let _options = this._setAuthToken(options);
+    const _options = this._setAuthToken(options);
     return this.https.post(url, data, _options)
                      .map((response) => response.json())
                      .catch(this.handleError);
   }
 
   public put(url: string, data: Object, options: RequestOptions): Observable<any> {
-    let _options = this._setAuthToken(options);
+    const _options = this._setAuthToken(options);
     return this.https.put(url, data, _options)
                      .map((response) => response.json())
                      .catch(this.handleError);
   }
 
   public delete(url: string, options: RequestOptions): Observable<any> {
-    let _options = this._setAuthToken(options);
+    const _options = this._setAuthToken(options);
     return this.https.delete(url, _options)
                      .map((response) => response.json())
                      .catch(this.handleError);
@@ -53,7 +53,7 @@ export class DjangoClientService {
   }
 
   private handleError(error: any) {
-    let errMsg = (error.message) ? error.message :
+    const errMsg = (error.message) ? error.message :
         error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.error(errMsg);
     return Observable.throw(errMsg);
