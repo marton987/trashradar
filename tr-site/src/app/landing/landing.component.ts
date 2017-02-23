@@ -9,6 +9,8 @@ export class LandingComponent implements OnInit {
 
   public spryGroupLogo = 'assets/img/spry-group-logo.png';
 
+  public spryGroupUrl = 'http://www.spry-group.com'
+
   constructor() { }
 
   ngOnInit() {
