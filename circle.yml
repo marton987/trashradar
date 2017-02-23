@@ -1,3 +1,18 @@
 notify:
   webhooks:
     - url: https://webhooks.gitter.im/e/1759e5396c50a8ae72a9
+
+dependencies:
+  pre:
+    - npm install -g @angular/cli
+
+machine:
+  node:
+    version: 7.4.0
+
+general:
+  build_dir: tr-site
+
+test: 
+  override: 
+    - ng test --watch=false
