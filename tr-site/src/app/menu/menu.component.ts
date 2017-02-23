@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  public trashRadarLogo = 'assets/img/trash-radar-logo.png';
+  public trashRadarLogo = 'assets/img/trash-radar-logo-highres.svg';
 
   constructor() { }
 
