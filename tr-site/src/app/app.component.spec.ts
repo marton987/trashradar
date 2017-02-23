@@ -3,13 +3,15 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
+import { LandingComponent } from './landing/landing.component';
 
 describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        MenuComponent
+        MenuComponent,
+        LandingComponent
       ],
     });
     TestBed.compileComponents();
