@@ -15,5 +15,4 @@ general:
 
 test: 
   override:
-    - tslint -c tslint.json 'src/app/**/*.ts'
-    - ng test --watch=false
+    - npm test
