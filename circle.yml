@@ -14,5 +14,6 @@ general:
   build_dir: tr-site
 
 test: 
-  override: 
+  override:
+    - tslint -c tslint.json 'src/app/**/*.ts'
     - ng test --watch=false
