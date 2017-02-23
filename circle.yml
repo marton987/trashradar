@@ -14,5 +14,5 @@ general:
   build_dir: tr-site
 
 test: 
-  override: 
-    - ng test --watch=false
+  override:
+    - npm test
