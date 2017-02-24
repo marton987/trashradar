@@ -1,5 +1,5 @@
-# trashradar
-Help your public servants and direct them to the trash.
+# Trash Radar
+[![CircleCI](https://circleci.com/gh/spry-group/trashradar.svg?style=shield)](https://circleci.com/gh/spry-group/trashradar)
 
 ## Problem
 Some public places are used as garbage storage and authorities wait too long to clean them
