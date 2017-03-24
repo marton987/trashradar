@@ -1,7 +1,8 @@
 @import "~bootstrap/scss/bootstrap";
+@import '../../styles/landing';
 
-.trlogo {
-    width: 45%;
+body { 
+    padding-top: 65px; 
 }
 
 .home {
