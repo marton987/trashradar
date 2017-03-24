@@ -1,8 +1,13 @@
-@import "~bootstrap/scss/bootstrap";
 @import '../../../styles/landing';
 
 .trlogo {
     width: 45%;
+}
+section#about {
+  padding: 4em;
+}
+.login-subscribe {
+  padding: 2em 0;
 }
 
 g[logo] {
