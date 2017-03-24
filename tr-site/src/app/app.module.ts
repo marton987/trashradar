@@ -12,6 +12,7 @@ import { NavBarComponent } from './landing/nav-bar/nav-bar.component';
 import { HeaderComponent } from './landing/header/header.component';
 import { DetailComponent } from './landing/detail/detail.component';
 import { AboutComponent } from './landing/about/about.component';
+import { LogoComponent } from './logo/logo.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AboutComponent } from './landing/about/about.component';
     NavBarComponent,
     HeaderComponent,
     DetailComponent,
-    AboutComponent
+    AboutComponent,
+    LogoComponent
   ],
   imports: [
     BrowserModule,
