@@ -1,27 +1,27 @@
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom navbar-toggleable-sm">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header page-scroll">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <a class="navbar-brand" href="#page-top">Trash Radar</a>
+      <button type="button" class="navbar-toggler navbar-toggler-right" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarCollapse">
         <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
       </button>
-      <a class="navbar-brand" href="#page-top">Trash Radar</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div id="navbarCollapse" [ngbCollapse]="isCollapsed" class="collapse navbar-collapse justify-content-end">
       <ul class="nav navbar-nav navbar-right">
-        <li class="hidden">
-          <a href="#page-top"></a>
+        <li class="nav-item hidden">
+          <a class="nav-link" href="#page-top"></a>
         </li>
-        <li class="page-scroll">
-          <a href="#portfolio">Portfolio</a>
+        <li class="nav-item">
+          <a class="nav-link" href="#portfolio">Portfolio</a>
         </li>
-        <li class="page-scroll">
-          <a href="#detail">Detail</a>
+        <li class="nav-iteml">
+          <a class="nav-link" href="#detail">Detail</a>
         </li>
-        <li class="page-scroll">
-          <a href="#about">About</a>
+        <li class="nav-item">
+          <a class="nav-link" href="#about">About</a>
         </li>
       </ul>
     </div>
