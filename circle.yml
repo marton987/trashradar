@@ -10,9 +10,6 @@ machine:
   node:
     version: 7.4.0
 
-general:
-  build_dir: tr-site
-
 test: 
   override:
     - npm test
