@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../services';
-import { Credentials } from '../services/auth/auth.model'
+import { Credentials } from '../services/auth/auth.model';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
     username: '',
     password: ''
   };
-  private errorMessage = '';
+  public errorMessage = '';
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   }
 
   private errorHandler(error) {
-    switch(error.status) {
+    switch (error.status) {
       case 404:
         this.errorMessage = 'Can\'t connect to the server.';
       break;
