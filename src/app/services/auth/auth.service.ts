@@ -39,7 +39,6 @@ export class AuthService {
   public register(userData: RegistrationCredentials): Observable<Authorization> {
     return this.httpService.post('/api/1/user/', userData)
       .map((user: Authorization) => {
-        console.log('sick stuff!')
         this.httpService.setAuthToken(user.token);
         this.user = user;
 
