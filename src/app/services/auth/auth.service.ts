@@ -27,7 +27,7 @@ export class AuthService {
   }
 
   public login(userData: Credentials): Observable<Authorization> {
-    return this.httpService.post('/auth/login/', userData)
+    return this.httpService.post('/api/v1/auth/login', userData)
       .map((user: Authorization) => {
         this.httpService.setAuthToken(user.token);
         this.user = user;
@@ -37,7 +37,7 @@ export class AuthService {
   }
 
   public register(userData: RegistrationCredentials): Observable<Authorization> {
-    return this.httpService.post('/api/1/user/', userData)
+    return this.httpService.post('/api/v1/user/', userData)
       .map((user: Authorization) => {
         this.httpService.setAuthToken(user.token);
         this.user = user;
@@ -46,8 +46,8 @@ export class AuthService {
       });
   }
 
-  public logout(): Observable<any> {
-    return this.httpService.post('/auth/logout/', {})
+  public logout() {
+    return this.httpService.post('/api/v1/auth/logout', {})
       .subscribe((res: any) => {
         this.httpService.setAuthToken();
         this.user = null;
