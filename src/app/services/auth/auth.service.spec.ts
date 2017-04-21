@@ -114,7 +114,7 @@ describe('AuthService', () => {
 
   it('should logout users', () => {
     mockBackend.connections.subscribe((connection) => {
-      if (connection.request.url.indexOf('/auth/login/') !== -1 ) {
+      if (connection.request.url.indexOf('/api/v1/auth/login') !== -1 ) {
         connection.mockRespond(mockResponse);
       } else {
         connection.mockRespond(mockResponseLogout);
