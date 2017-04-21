@@ -3,6 +3,9 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Ng2Webstorage } from 'ngx-webstorage';
+
+import { DjangoClientService, AuthService } from './services';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -30,10 +33,14 @@ import { routing, routedComponents } from './app.routing';
     FormsModule,
     HttpModule,
     NgbModule.forRoot(),
-    routing
+    routing,
+    Ng2Webstorage,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  providers: [],
+  providers: [
+    DjangoClientService.provider(),
+    AuthService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
