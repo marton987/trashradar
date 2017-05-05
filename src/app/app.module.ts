@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Ng2Webstorage } from 'ngx-webstorage';
 
 import { DjangoClientService, AuthService } from './services';
+import { AuthGuard } from './services/auth/auth.guard';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -40,6 +41,7 @@ import { routing, routedComponents } from './app.routing';
   providers: [
     DjangoClientService.provider(),
     AuthService,
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })
