@@ -1,43 +1,48 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
+import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Ng2Webstorage } from 'ngx-webstorage';
 
-import { DjangoClientService, AuthService } from './services';
-import { AuthGuard } from './services/auth/auth.guard';
+import { DjangoClientService } from './common/django-client/django-client.service';
+import { AuthService, AuthGuard } from './common/auth';
+import { TrStoreModule } from './common/store/store.module';
 
 import { AppComponent } from './app.component';
-import { MenuComponent } from './menu/menu.component';
 import { NavBarComponent } from './landing/nav-bar/nav-bar.component';
 import { HeaderComponent } from './landing/header/header.component';
 import { DetailComponent } from './landing/detail/detail.component';
+import { LandingComponent } from './landing/landing.component';
 import { AboutComponent } from './landing/about/about.component';
-import { LogoComponent } from './logo/logo.component';
+import { LogoComponent} from './common/logo/logo.component';
 
-import { routing, routedComponents } from './app.routing';
+const appRoutes: Routes = [
+  { path: '', component: LandingComponent },
+  { path: 'auth', loadChildren: 'app/auth/auth.module#AuthModule' },
+  { path: 'app', loadChildren: 'app/main/main.module#MainModule', canActivate: [AuthGuard] }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
+    LandingComponent,
     NavBarComponent,
     HeaderComponent,
     DetailComponent,
     AboutComponent,
     LogoComponent,
-    routedComponents
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpModule,
     NgbModule.forRoot(),
-    routing,
+    RouterModule.forRoot(appRoutes),
     Ng2Webstorage,
+    TrStoreModule
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [
     DjangoClientService.provider(),
     AuthService,
