@@ -4,30 +4,36 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { MockBackend } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
-import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
-import { LocalStorageService } from 'ngx-webstorage';
-
-import { DjangoClientService, AuthService } from '../services';
+import { AuthActions } from '../../common/auth';
 import { MenuComponent } from './menu.component';
+
+class MockStore {
+  public dispatch = jasmine.createSpy('dispatch');
+}
+
+class MockAuthActions {
+  public logout = jasmine.createSpy('logout');
+}
 
 describe('MenuComponent', () => {
   let component: MenuComponent;
   let fixture: ComponentFixture<MenuComponent>;
+  const router = {
+    navigate: jasmine.createSpy('navigate'),
+  };
   const mockBackend: MockBackend = new MockBackend();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule.withRoutes([]) ],
       declarations: [ MenuComponent ],
       providers: [
-        AuthService,
-        LocalStorageService,
-        {
-          provide: DjangoClientService,
-          useFactory: () => { return new DjangoClientService(mockBackend, new BaseRequestOptions()); }
-        },
-      ],
+        { provide: Store, useClass: MockStore, },
+        { provide: AuthActions, useClass: MockAuthActions, },
+        { provide: Router, useValue: router, },
+      ]
     })
     .compileComponents();
   }));
@@ -40,5 +46,12 @@ describe('MenuComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should dispatch an action on logout', () => {
+    component.logout();
+    const actions = fixture.debugElement.injector.get(AuthActions);
+    expect(actions.logout).toHaveBeenCalled();
+    expect(router.navigate).toHaveBeenCalledWith(['/']);
   });
 });

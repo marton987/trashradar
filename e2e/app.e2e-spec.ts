@@ -9,6 +9,6 @@ describe('tr-site App', function() {
 
   it('should display message saying Trash Radar', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Trash Radar');
+    expect(page.getParagraphText()).toEqual('TRASH RADAR');
   });
 });

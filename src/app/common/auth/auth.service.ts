@@ -1,36 +1,36 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/Rx';
 import { LocalStorageService, LocalStorage } from 'ngx-webstorage';
+import { Store } from '@ngrx/store';
 
 import { Authorization, Credentials, RegistrationCredentials } from './auth.model';
+import { AuthActions } from './auth.actions';
 import { DjangoClientService } from '../django-client/django-client.service';
 
 @Injectable()
 export class AuthService {
-  public user$: BehaviorSubject<Authorization>;
-
   @LocalStorage('user', null)
   private user: Authorization;
 
-  constructor(private httpService: DjangoClientService, private storage: LocalStorageService) {
-    this.user$ = new BehaviorSubject<Authorization>(this.user);
-    this.storage.observe('user').subscribe(this.user$);
-
+  constructor(
+    private httpService: DjangoClientService,
+    private storage: LocalStorageService,
+    private store: Store<any>,
+    private authActions: AuthActions
+  ) {
     if (this.user && this.user.token) {
-        this.httpService.setAuthToken(this.user.token);
+      this.httpService.setAuthToken(this.user.token);
+      this.store.dispatch(this.authActions.loginSuccess(this.user));
     }
+    // Subscribe and update local storage
+    this.store.select((state) => state.auth.user).subscribe((user) => this.user = user);
   }
 
-  public isLoggedIn(): boolean {
-    return !!this.user;
-  }
 
   public login(userData: Credentials): Observable<Authorization> {
     return this.httpService.post('/api/v1/auth/login', userData)
       .map((user: Authorization) => {
         this.httpService.setAuthToken(user.token);
-        this.user = user;
 
         return user;
       });
@@ -40,7 +40,6 @@ export class AuthService {
     return this.httpService.post('/api/v1/user/', userData)
       .map((user: Authorization) => {
         this.httpService.setAuthToken(user.token);
-        this.user = user;
 
         return user;
       });
@@ -48,10 +47,7 @@ export class AuthService {
 
   public logout() {
     return this.httpService.post('/api/v1/auth/logout', {})
-      .subscribe((res: any) => {
-        this.httpService.setAuthToken();
-        this.user = null;
-      });
+      .map(() => this.httpService.setAuthToken());
   }
 
 }

@@ -3,7 +3,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
-import { MenuComponent } from './menu/menu.component';
+import { MenuComponent } from './main/menu/menu.component';
 import { LandingComponent } from './landing/landing.component';
 import { NavBarComponent } from './landing/nav-bar/nav-bar.component';
 import { HeaderComponent } from './landing/header/header.component';

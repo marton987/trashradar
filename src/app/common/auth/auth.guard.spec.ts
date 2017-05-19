@@ -7,35 +7,39 @@ import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { Authorization } from './auth.model';
 import { BehaviorSubject } from 'rxjs/Rx';
-
-class MockAuthService {
-  public user$ = new BehaviorSubject(null);
-}
+import { initialAuthState } from './auth.state';
 
 class MockRouter {
   public navigate = jasmine.createSpy('navigate');
 }
 
 describe('AuthGuard', () => {
-  let authService: MockAuthService;
+  let store: MockStore;
   let authGuard: AuthGuard;
   let router: MockRouter;
+  let storeSubject: BehaviorSubject<object>;
+
+  class MockStore {
+    public dispatch = jasmine.createSpy('dispatch');
+    public select = () => storeSubject;
+}
 
   beforeEach(() => {
-    authService = new MockAuthService();
+    storeSubject = new BehaviorSubject(initialAuthState);
+    store = new MockStore();
     router = new MockRouter();
-    authGuard = new AuthGuard(authService as AuthService, router as any);
+    authGuard = new AuthGuard(store as any, router as any);
   });
 
   it('should return true when user token present', () => {
-    authService.user$.next({ token: 'realToken' });
+    storeSubject.next({ isLoggedIn: true });
     expect(authGuard.canActivate(null, null)).toEqual(true);
     expect(router.navigate).not.toHaveBeenCalled();
   });
 
   it('should attempt to navigate to login on missing token', () => {
     expect(authGuard.canActivate(null, null)).toEqual(false);
-    expect(router.navigate).toHaveBeenCalledWith(['/login']);
+    expect(router.navigate).toHaveBeenCalledWith(['/auth']);
   });
 
 });
