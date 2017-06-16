@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Ng2Webstorage } from 'ngx-webstorage';
 
-import { DjangoClientService } from './common/django-client/django-client.service';
+import { DjangoClientService } from './common/django-client';
 import { AuthService, AuthGuard } from './common/auth';
 import { TrStoreModule } from './common/store/store.module';
 

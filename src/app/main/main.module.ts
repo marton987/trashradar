@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 
+import { UserService } from '../common/user';
+
 export const routes: Routes = [
   { path: '', component: HomeComponent },
 ];
@@ -17,6 +19,8 @@ export const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
   ],
-  providers: []
+  providers: [
+    UserService,
+  ]
 })
 export class MainModule {}

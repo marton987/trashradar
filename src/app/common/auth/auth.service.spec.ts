@@ -5,7 +5,7 @@ import {
 } from '@angular/http';
 import { AuthService } from './auth.service';
 import { MockBackend } from '@angular/http/testing';
-import { DjangoClientService } from '../django-client/django-client.service';
+import { DjangoClientService } from '../django-client';
 import { LocalStorageService } from 'ngx-webstorage';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs/Rx';

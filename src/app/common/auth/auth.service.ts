@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { Authorization, Credentials, RegistrationCredentials } from './auth.model';
 import { AuthActions } from './auth.actions';
-import { DjangoClientService } from '../django-client/django-client.service';
+import { DjangoClientService } from '../django-client';
 
 @Injectable()
 export class AuthService {
